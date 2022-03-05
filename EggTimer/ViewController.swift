@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         secondsRemaining = eggTimes[hardness]!
         
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
      }
 
      @objc func updateCounter() {
