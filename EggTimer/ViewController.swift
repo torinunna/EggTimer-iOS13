@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
     
     var secondsRemaining = 60
     
+    var timer = Timer()
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
+        
+        timer.invalidate()
         
         let hardness = sender.currentTitle!
         
