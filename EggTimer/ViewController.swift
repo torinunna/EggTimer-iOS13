@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     
     let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
     
-    var secondsRemaining = 60
+    var totalTime = 0
+    var secondPassed = 0
     
     var timer = Timer()
     
@@ -26,17 +27,20 @@ class ViewController: UIViewController {
         
         let hardness = sender.currentTitle!
         
-        secondsRemaining = eggTimes[hardness]!
+        totalTime = eggTimes[hardness]!
+        
+        progressBar.progress = 0.0
+        secondPassed = 0
+        titleLabel.text = hardness
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
-        progressBar.progress = 1.0
      }
 
      @objc func updateCounter() {
-         if secondsRemaining > 0 {
-             print("\(secondsRemaining) seconds")
-             secondsRemaining -= 1
+         if secondPassed < totalTime {
+             secondPassed += 1
+             progressBar.progress = Float(secondPassed) / Float(totalTime)
+             print(Float(secondPassed) / Float(totalTime))
          } else {
              timer.invalidate()
              titleLabel.text = "DONE!"
