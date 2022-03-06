@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     var timer = Timer()
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
         timer.invalidate()
@@ -27,6 +29,8 @@ class ViewController: UIViewController {
         secondsRemaining = eggTimes[hardness]!
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
+        progressBar.progress = 1.0
      }
 
      @objc func updateCounter() {
